@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   function DataLoad({ posts }: any) {
-    if (!posts) {
+    if (posts) {
       return (
         <div id="blogCards" className="mt-5 ">
           {posts?.map((post: any) => (
