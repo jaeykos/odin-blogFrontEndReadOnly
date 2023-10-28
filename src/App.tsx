@@ -3,7 +3,8 @@ import "./App.css";
 import dateFormat from "dateformat";
 
 function App() {
-  const [posts, setPosts] = useState([] as any[]);
+  const [posts, setPosts] = useState(null as any);
+  const [isServerOk, setIsServerOk] = useState(true);
 
   useEffect(() => {
     fetch("https://odin-blog-backend.onrender.com/posts")
@@ -11,13 +12,21 @@ function App() {
         return res.json();
       })
       .then((data) => {
+        console.log(data.status);
         console.log(data);
         setPosts(data);
+      })
+      .catch(() => {
+        setIsServerOk(false);
       });
   }, []);
 
-  function DataLoad({ posts }: any) {
+  function DataLoad() {
+    if (!isServerOk) {
+      return <p>server not okay</p>;
+    }
     if (posts) {
+      console.log(posts);
       return (
         <div id="blogCards" className="mt-5 ">
           {posts?.map((post: any) => (
@@ -40,6 +49,7 @@ function App() {
         </div>
       );
     } else {
+      console.log(posts);
       return (
         <p className="font-bold mr-3 text-xl text-black">Contents Loading...</p>
       );
@@ -62,7 +72,8 @@ function App() {
         <a href="https://jaekang-odin-blog-edittable.netlify.app">here</a> to go
         to editable website.
       </p>
-      <DataLoad posts={posts} />
+
+      <DataLoad />
     </div>
   );
 }
