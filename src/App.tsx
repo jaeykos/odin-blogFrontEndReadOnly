@@ -6,7 +6,7 @@ function App() {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts")
+    fetch("https://odin-blog-backend.onrender.com/posts")
       .then((res) => {
         return res.json();
       })
