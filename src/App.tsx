@@ -28,8 +28,9 @@ function App() {
         to same back-end server.
       </p>
       <p>
-        This is read-only website. Click <a href="">here</a> to go to editable
-        website.
+        This is read-only website. Click{" "}
+        <a href="https://jaekang-odin-blog-edittable.netlify.app">here</a> to go
+        to editable website.
       </p>
       <p></p>
       <div id="blogCards" className="mt-5 ">
