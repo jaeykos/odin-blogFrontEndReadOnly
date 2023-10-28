@@ -3,7 +3,7 @@ import "./App.css";
 import dateFormat from "dateformat";
 
 function App() {
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([] as any[]);
 
   useEffect(() => {
     fetch("https://odin-blog-backend.onrender.com/posts")

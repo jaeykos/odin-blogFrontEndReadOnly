@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import dateFormat from "dateformat";
 
 function Post() {
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(null as any);
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,8 +17,9 @@ function Post() {
       });
   }, []);
 
-  function DateCreated({ dateUpdated, dateCreated }) {
+  function DateCreated({ dateUpdated, dateCreated }: any) {
     if (
+      dateUpdated &&
       dateFormat(dateUpdated, "yyyy.m.d") != dateFormat(dateCreated, "yyyy.m.d")
     ) {
       return <div> ({dateFormat(dateCreated, "yyyy.m.d")}) </div>;
