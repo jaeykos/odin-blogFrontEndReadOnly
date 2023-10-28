@@ -16,6 +16,36 @@ function App() {
       });
   }, []);
 
+  function DataLoad({ posts }: any) {
+    if (!posts) {
+      return (
+        <div id="blogCards" className="mt-5 ">
+          {posts?.map((post: any) => (
+            <div className="my-5">
+              <div className="flex flex-row ">
+                <a
+                  href={"posts/" + post._id}
+                  className="font-bold mr-3 text-xl text-black"
+                >
+                  {post.title}
+                </a>
+
+                <div className="flex flex-col text-sm  justify-end">
+                  {dateFormat(post.dateUpdated, "yyyy.m.d")}
+                </div>
+              </div>
+              <div className="max-h-32  overflow-hidden">{post.content}</div>
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <p className="font-bold mr-3 text-xl text-black">Contents Loading...</p>
+      );
+    }
+  }
+
   return (
     <div className=" w-full justify-start p-3 font-mono ">
       <div id="pageTitle" className="text-6xl font-bold mb-8 ">
@@ -32,26 +62,7 @@ function App() {
         <a href="https://jaekang-odin-blog-edittable.netlify.app">here</a> to go
         to editable website.
       </p>
-      <p></p>
-      <div id="blogCards" className="mt-5 ">
-        {posts?.map((post: any) => (
-          <div className="my-5">
-            <div className="flex flex-row ">
-              <a
-                href={"posts/" + post._id}
-                className="font-bold mr-3 text-xl text-black"
-              >
-                {post.title}
-              </a>
-
-              <div className="flex flex-col text-sm  justify-end">
-                {dateFormat(post.dateUpdated, "yyyy.m.d")}
-              </div>
-            </div>
-            <div className="max-h-32  overflow-hidden">{post.content}</div>
-          </div>
-        ))}
-      </div>
+      <DataLoad posts={posts} />
     </div>
   );
 }
